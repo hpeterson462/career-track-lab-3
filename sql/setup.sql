@@ -25,3 +25,12 @@ CREATE TABLE trees (
   family TEXT NOT NULL,
   elevation INT NOT NULL
 );
+
+DROP TABLE IF EXISTS butterflies;
+
+CREATE TABLE butterflies (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  food TEXT NOT NULL,
+  color TEXT NOT NULL
+);
