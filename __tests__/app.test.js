@@ -35,4 +35,60 @@ describe('bird routes', () => {
       flies: true
     });
   });
+
+  it('updates a bird by id via PUT', async () => {
+    const createdBird = await Bird.insert({
+      name: 'red-tailed hawk',
+      type: 'hawk',
+      flies: true
+    });
+    const response = await request(app)
+      .put(`/api/v1/birds/${createdBird.id}`)
+      .send({
+        name: 'bald eagle',
+        type: 'eagle',
+        flies: true
+      });
+
+    expect(response.body).toEqual({
+      id: createdBird.id,
+      name: 'bald eagle',
+      type: 'eagle',
+      flies: true
+    });
+  });
+
+  it('get a bird via GET', async () => {
+    const createdBird = await Bird.insert({
+      name: 'red-tailed hawk',
+      type: 'hawk',
+      flies: true
+    });
+    const response = await request(app)
+      .get(`/api/v1/birds/${createdBird.id}`);
+
+    expect(response.body).toEqual({
+      id: createdBird.id,
+      name: 'red-tailed hawk',
+      type: 'hawk',
+      flies: true
+    });
+  });
+
+  it('get a bird via GET', async () => {
+    const createdBird = await Bird.insert({
+      name: 'red-tailed hawk',
+      type: 'hawk',
+      flies: true
+    });
+    const response = await request(app)
+      .get('/api/v1/birds');
+
+    expect(response.body).toEqual([{
+      id: createdBird.id,
+      name: 'red-tailed hawk',
+      type: 'hawk',
+      flies: true
+    }]);
+  });
 });
