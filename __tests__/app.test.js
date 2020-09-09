@@ -18,4 +18,14 @@ describe('bird routes', () => {
         flies: true
       });
   });
+
+  it('delete a bird by id via DELETE', async () => {
+    const createdBird = await Bird.insert({
+      name: 'red-tailed hawk',
+      type: 'hawk',
+      flies: true
+    });
+    const response = await request(app)
+      .delete(`/api/v1/birds/${createdBird.id}`);
+  });
 });
