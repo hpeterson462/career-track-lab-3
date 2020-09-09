@@ -16,3 +16,12 @@ CREATE TABLE flowers (
   color TEXT NOT NULL,
   petals INT NOT NULL
 );
+
+DROP TABLE IF EXISTS trees;
+
+CREATE TABLE trees (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  family TEXT NOT NULL,
+  elevation INT NOT NULL
+);
